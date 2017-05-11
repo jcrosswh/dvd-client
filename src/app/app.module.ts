@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
+import { DvdHeaderComponent }  from './dvd-header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DvdHeaderComponent
   ],
   imports: [
     BrowserModule,
