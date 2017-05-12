@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ngx-bootstrap';
 
+import { DvdClientService } from './dvd-client.service';
+
 import { AppComponent } from './app.component';
 import { DvdHeaderComponent }  from './dvd-header.component';
 
@@ -18,7 +20,7 @@ import { DvdHeaderComponent }  from './dvd-header.component';
     HttpModule,
     AlertModule.forRoot()
   ],
-  providers: [],
+  providers: [DvdClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
