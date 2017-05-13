@@ -3,6 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { Inventory } from './inventory';
 import { Store } from './store';
 
 @Injectable()
@@ -27,9 +28,25 @@ export class DvdClientService {
       .catch(this.handleError);
   }
 
+  getAvailableInventory(storeId: number): Promise<Array<Inventory>> {
+    var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+
+    return this.http
+      .get(
+        'http://localhost:8080/api/stores/' + storeId + '/inventory',
+        { headers: headers }
+      )
+      .toPromise()
+      .then((response) => {
+        return response.json() as Inventory[];
+      })
+      .catch(this.handleError);
+  }
+
   private createAuthorizationHeader(headers: Headers) {
     headers.append('Authorization', 'Basic ' +
-      btoa('user:b5985715-3ee7-4039-a5f2-277ed31bc1d1'));
+      btoa('user:devLogin'));
   }
 
   private handleError(error: any): Promise<any> {

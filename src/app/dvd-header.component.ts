@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { Store } from './store';
 import { DvdClientService } from './dvd-client.service';
+import { InventoryService } from './inventory.service';
 
 @Component({
   selector: 'dvd-header',
@@ -9,16 +11,31 @@ import { DvdClientService } from './dvd-client.service';
 })
 export class DvdHeaderComponent implements OnInit {
   stores: Store[] = [];
-  selectedStore: Store;
+  selectedStore: number;
 
-  constructor(private dvdClientService: DvdClientService) {
-  }
+  constructor(
+    private dvdClientService: DvdClientService,
+    private inventoryService: InventoryService
+  ) {}
 
   ngOnInit(): void {
     this.dvdClientService.getStores()
       .then(stores => {
         this.stores = stores;
-        this.selectedStore = this.stores[0];
+        this.selectedStore = this.stores[0].storeId;
+        this.updateInventory();
+      });
+  }
+
+  public storeSelected(storeId: number) {
+    this.selectedStore = storeId;
+    this.updateInventory();
+  }
+
+  private updateInventory() {
+    this.dvdClientService.getAvailableInventory(this.selectedStore)
+      .then(inventory => {
+        this.inventoryService.setInventory(inventory);
       });
   }
 }

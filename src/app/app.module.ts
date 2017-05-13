@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ngx-bootstrap';
 
 import { DvdClientService } from './dvd-client.service';
+import { InventoryService } from './inventory.service';
 
 import { AppComponent } from './app.component';
 import { DvdHeaderComponent }  from './dvd-header.component';
@@ -20,7 +21,10 @@ import { DvdHeaderComponent }  from './dvd-header.component';
     HttpModule,
     AlertModule.forRoot()
   ],
-  providers: [DvdClientService],
+  providers: [
+    DvdClientService,
+    InventoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
