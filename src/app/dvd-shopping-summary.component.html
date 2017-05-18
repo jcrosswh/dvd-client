@@ -1,23 +1,35 @@
 <div class="shopping-summary">
   <div class="row">
     <!-- Category Filter -->
-    <div class="col-sm-2">
+    <div class="col-sm-3">
       <!-- TODO: change to proper filter: http://ui-patterns.com/patterns/LiveFilter -->
-      <h3>Categories:</h3>
-      <ul class="nav nav-pills nav-stacked">
-        <li *ngFor="let category of categories" [class.active]="category === selectedCategory"><a href="#">{{category}}</a></li>
-      </ul>
+      <div class="row">
+        <h3>Search:</h3>
+      </div>
+      <div class="row">
+        <h4>Categories</h4>
+      </div>
+      <div class="row underline">
+        <ng-template ngFor let-category [ngForOf]="categories" let-i="index">
+          <div class="col-sm-4">
+            <label class="ellipsis">
+              <input type="checkbox" /> {{category}}
+            </label>
+          </div>
+          <div class="clearfix" *ngIf="i % 3 === 2"></div>
+        </ng-template>
+      </div>
     </div>
     <!-- /Category Filter -->
 
-    <div class="col-sm-10">
+    <div class="col-sm-9">
       <!-- Main film panel -->
       <div class="row">
         <div class="col-xs-12">
           <div class="row" *ngFor="let inventoryRow of displayInventory">
             <div class="col-sm-3" *ngFor="let inventory of inventoryRow">
               <div class="panel panel-default">
-                <div class="panel-heading">{{inventory.filmTitle}}</div>
+                <div class="panel-heading ellipsis">{{inventory.filmTitle}}</div>
                 <div class="panel-body">
                   Panel content
                 </div>

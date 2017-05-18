@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
+import { DvdClientService } from './dvd-client.service';
 import { InventoryService } from './inventory.service';
 import { Inventory } from './inventory';
 
@@ -24,22 +25,17 @@ export class DvdShoppingSummaryComponent implements OnInit {
   private selectedCategory:string;
   private itemsPerRow:number = 4;
 
-  constructor(private inventoryService: InventoryService) {
+  constructor(
+    private dvdClientService: DvdClientService,
+    private inventoryService: InventoryService
+  ) {
     this.availableInventory = [];
     this.pgCurrentPage = 1;
     this.pgTotalItems = 0;
     this.maxSizes = [4, 8, 12, 24];
     this.itemsPerPage = this.maxSizes[1];
     this.displayInventory = [];
-    this.categories = [
-      'All',
-      'Action',
-      'Comedy',
-      'Family',
-      'Games',
-      'Horror',
-      'Sci-Fi'
-    ];
+    this.categories = [];
     this.selectedCategory = this.categories[0];
   }
 
@@ -53,6 +49,10 @@ export class DvdShoppingSummaryComponent implements OnInit {
            this.generateDisplayList();
          }
        });
+     this.dvdClientService.getCategories()
+         .then(categories => {
+           this.categories = categories;
+         });
   }
 
   public updatePage(event: any) {
