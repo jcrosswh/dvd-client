@@ -7,7 +7,8 @@ import { InventoryService } from './inventory.service';
 
 @Component({
   selector: 'dvd-header',
-  templateUrl: './dvd-header.component.html'
+  templateUrl: './dvd-header.component.html',
+  styleUrls: ['./dvd-header.component.css']
 })
 export class DvdHeaderComponent implements OnInit {
   stores: Store[] = [];

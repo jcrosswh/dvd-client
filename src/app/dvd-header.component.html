@@ -15,7 +15,8 @@
         <li><a href="http://getbootstrap.com/examples/starter-template/#about">About</a></li>
         <li><a href="http://getbootstrap.com/examples/starter-template/#contact">Contact</a></li>
       </ul>
-      <div class="navbar-form navbar-right form-group">
+      <div class="navbar-right navbar-form form-group">
+        <label class="navbar-text" for="storeSelector">Store:</label>
         <select class="form-control" name="storeSelector" [(ngModel)]="selectedStore" (ngModelChange)="storeSelected($event)">
           <option *ngFor="let store of stores" [value]="store.storeId">{{store.city}} / {{store.district}}</option>
         </select>
