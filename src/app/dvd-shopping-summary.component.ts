@@ -6,7 +6,8 @@ import { Inventory } from './inventory';
 
 @Component({
   selector: 'dvd-shopping-summary',
-  templateUrl: './dvd-shopping-summary.component.html'
+  templateUrl: './dvd-shopping-summary.component.html',
+  styleUrls: ['./dvd-shopping-summary.component.css']
 })
 export class DvdShoppingSummaryComponent implements OnInit {
   private subscription: Subscription;
@@ -15,17 +16,31 @@ export class DvdShoppingSummaryComponent implements OnInit {
   private itemsPerPage:number;
   private pgTotalItems:number;
   private pgCurrentPage:number;
+  private pgTotalPages:number;
   private numPages:number = 0;
   private maxSizes:Array<number>;
-  private displayInventory: Inventory[];
+  private displayInventory:Inventory[][];
+  private categories:string[];
+  private selectedCategory:string;
+  private itemsPerRow:number = 4;
 
   constructor(private inventoryService: InventoryService) {
     this.availableInventory = [];
     this.pgCurrentPage = 1;
     this.pgTotalItems = 0;
-    this.maxSizes = [5, 10, 20, 50];
+    this.maxSizes = [4, 8, 12, 24];
     this.itemsPerPage = this.maxSizes[1];
     this.displayInventory = [];
+    this.categories = [
+      'All',
+      'Action',
+      'Comedy',
+      'Family',
+      'Games',
+      'Horror',
+      'Sci-Fi'
+    ];
+    this.selectedCategory = this.categories[0];
   }
 
   public ngOnInit() {
@@ -50,9 +65,12 @@ export class DvdShoppingSummaryComponent implements OnInit {
   }
 
   private generateDisplayList() {
-    this.displayInventory = this.availableInventory.slice(
-      (this.pgCurrentPage * this.itemsPerPage) - this.itemsPerPage,
-      this.pgCurrentPage * this.itemsPerPage
-    );
+    this.displayInventory = [];
+    for (var i = 0; i < this.itemsPerPage / this.itemsPerRow; i++) {
+      this.displayInventory[i] = this.availableInventory.slice(
+        (this.pgCurrentPage * this.itemsPerRow * (i + 1)) - this.itemsPerRow,
+        this.pgCurrentPage * this.itemsPerRow * (i + 1)
+      );
+    }
   }
 }
