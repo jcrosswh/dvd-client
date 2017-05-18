@@ -13,13 +13,10 @@ export class DvdClientService {
   constructor(private http: Http) { }
 
   getStores(): Promise<Array<Store>> {
-    var headers = new Headers();
-    this.createAuthorizationHeader(headers);
 
     return this.http
       .get(
-        this.serviceUrl + '/api/stores',
-        { headers: headers }
+        this.serviceUrl + '/api/stores'
       )
       .toPromise()
       .then((response) => {
@@ -28,14 +25,24 @@ export class DvdClientService {
       .catch(this.handleError);
   }
 
-  getAvailableInventory(storeId: number): Promise<Array<Inventory>> {
-    var headers = new Headers();
-    this.createAuthorizationHeader(headers);
+  getCategories(): Promise<Array<string>> {
 
     return this.http
       .get(
-        this.serviceUrl + '/api/stores/' + storeId + '/inventory',
-        { headers: headers }
+        this.serviceUrl + '/api/categories'
+      )
+      .toPromise()
+      .then((response) => {
+        return response.json() as string[];
+      })
+      .catch(this.handleError);
+  }
+
+  getAvailableInventory(storeId: number): Promise<Array<Inventory>> {
+
+    return this.http
+      .get(
+        this.serviceUrl + '/api/stores/' + storeId + '/inventory'
       )
       .toPromise()
       .then((response) => {
