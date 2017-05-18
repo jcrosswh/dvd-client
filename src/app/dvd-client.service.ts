@@ -8,7 +8,7 @@ import { Store } from './store';
 
 @Injectable()
 export class DvdClientService {
-  // private heroesUrl = 'app/heroes';  // URL to web api
+  private serviceUrl = 'http://localhost:8080';
 
   constructor(private http: Http) { }
 
@@ -18,7 +18,7 @@ export class DvdClientService {
 
     return this.http
       .get(
-        'http://localhost:8080/api/stores',
+        this.serviceUrl + '/api/stores',
         { headers: headers }
       )
       .toPromise()
@@ -34,7 +34,7 @@ export class DvdClientService {
 
     return this.http
       .get(
-        'http://localhost:8080/api/stores/' + storeId + '/inventory',
+        this.serviceUrl + '/api/stores/' + storeId + '/inventory',
         { headers: headers }
       )
       .toPromise()
@@ -46,7 +46,7 @@ export class DvdClientService {
 
   private createAuthorizationHeader(headers: Headers) {
     headers.append('Authorization', 'Basic ' +
-      btoa('user:devLogin'));
+      btoa('MARY.SMITH@sakilacustomer.org:password'));
   }
 
   private handleError(error: any): Promise<any> {
