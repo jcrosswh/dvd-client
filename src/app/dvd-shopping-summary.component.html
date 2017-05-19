@@ -8,7 +8,7 @@
           <h3>Search:</h3>
         </div>
         <div class="col-sm-4 text-align-h3">
-          <a href="#"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset</a>
+          <a href="#" (click)="resetFilter($event.target)"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset</a>
         </div>
       </div>
       <div class="row">
@@ -18,7 +18,7 @@
         <ng-template ngFor let-category [ngForOf]="categories" let-i="index">
           <div class="col-sm-4">
             <label class="ellipsis">
-              <input type="checkbox" name="{{category}}" (click)="applyCategoryFilter({name: $event.target.name, checked: $event.target.checked})" /> {{category}}
+              <input type="checkbox" name="{{category.name}}" [(ngModel)]="category.isChecked" (ngModelChange)="applyCategoryFilter(category)" /> {{category.name}}
             </label>
           </div>
           <div class="clearfix" *ngIf="i % 3 === 2"></div>
