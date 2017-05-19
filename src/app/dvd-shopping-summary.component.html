@@ -45,12 +45,14 @@
       <!-- Main film panel -->
       <div class="row" *ngFor="let inventoryRow of displayInventory">
         <div class="col-sm-3" *ngFor="let inventory of inventoryRow">
-          <div class="panel panel-default">
-            <div class="panel-heading ellipsis">{{inventory.filmTitle}}</div>
-            <div class="panel-body">
-              {{inventory.category}}
+          <a href="#" (click)="showModal(inventory.filmTitle)">
+            <div class="panel panel-default">
+              <div class="panel-heading ellipsis">{{inventory.filmTitle}}</div>
+              <div class="panel-body">
+                {{inventory.category}}
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <!-- /Main film panel -->
@@ -71,6 +73,41 @@
         </div>
       </div>
       <!-- /Pagination row -->
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="isModalShown && selectedFilm"
+  [config]="{ show: true }"
+  (onHidden)="onHidden()"
+  bsModal
+  #autoShownModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{selectedFilm.title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>{{selectedFilm.description}}</li>
+          <li>{{selectedFilm.releaseYear}}</li>
+          <li>{{selectedFilm.rentalDuration}}</li>
+          <li>{{selectedFilm.rentalRate}}</li>
+          <li>{{selectedFilm.length}}</li>
+          <li>{{selectedFilm.rating}}</li>
+          <li>{{selectedFilm.specialFeatures}}</li>
+          <li>{{selectedFilm.languageId.name}}</li>
+        </ul>
+        <button class="btn btn-primary">Checkout</button>
+      </div>
     </div>
   </div>
 </div>

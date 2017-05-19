@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { PaginationModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 
 import { DvdClientService } from './dvd-client.service';
 import { InventoryService } from './inventory.service';
@@ -22,7 +23,8 @@ import { CategoryPipe } from './category.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     DvdClientService,

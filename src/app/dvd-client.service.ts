@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Inventory } from './inventory';
 import { Store } from './store';
+import { Film } from './film';
 
 @Injectable()
 export class DvdClientService {
@@ -47,6 +48,19 @@ export class DvdClientService {
       .toPromise()
       .then((response) => {
         return response.json() as Inventory[];
+      })
+      .catch(this.handleError);
+  }
+
+  getFilmDetail(title: string): Promise<Film> {
+
+    return this.http
+      .get(
+        this.serviceUrl + '/api/films?title=' + title
+      )
+      .toPromise()
+      .then((response) => {
+        return response.json() as Film;
       })
       .catch(this.handleError);
   }
