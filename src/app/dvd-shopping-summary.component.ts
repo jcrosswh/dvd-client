@@ -95,5 +95,6 @@ export class DvdShoppingSummaryComponent implements OnInit {
 
   private filterList() {
     this.filteredInventory = this.categoryPipe.transform(this.availableInventory, this.selectedCategories);
+    this.pgTotalItems = this.filteredInventory.length;
   }
 }
