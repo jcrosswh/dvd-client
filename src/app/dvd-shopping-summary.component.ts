@@ -36,7 +36,7 @@ export class DvdShoppingSummaryComponent implements OnInit {
     this.filteredInventory = [];
     this.pgCurrentPage = 1;
     this.pgTotalItems = 0;
-    this.maxSizes = [4, 8, 12, 24];
+    this.maxSizes = [4, 8, 12, 24, 48, 96];
     this.itemsPerPage = this.maxSizes[3];
     this.displayInventory = [];
     this.categories = [];

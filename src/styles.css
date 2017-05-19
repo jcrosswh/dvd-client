@@ -7,6 +7,7 @@
 
 .underline {
   border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
 }
 
 /* From http://stackoverflow.com/a/23741988 */
@@ -17,4 +18,8 @@
 
 .text-align-h3 {
   margin-top: 30px;
+}
+
+.padding-top {
+  padding-top: 15px;
 }

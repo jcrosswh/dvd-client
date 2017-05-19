@@ -24,6 +24,20 @@
           <div class="clearfix" *ngIf="i % 3 === 2"></div>
         </ng-template>
       </div>
+      <div class="row underline padding-top">
+        <div class="col-sm-6">
+          <h4>Movies per page </h4>
+        </div>
+        <div class="col-sm-6">
+          <select
+            class="form-control"
+            name="summaryPageSize"
+            [(ngModel)]="itemsPerPage"
+            (ngModelChange)="itemCountChanged($event)">
+            <option *ngFor="let size of maxSizes" [value]="size">{{size}}</option>
+          </select>
+        </div>
+      </div>
     </div>
     <!-- /Category Filter -->
 
@@ -55,15 +69,6 @@
             (numPages)="pgTotalPages = $event"
             (pageChanged)="updatePage($event)"></pagination>
         </div>
-        <!-- <div class="col-md-3">
-          <select
-            class="form-control"
-            name="summaryPageSize"
-            [(ngModel)]="itemsPerPage"
-            (ngModelChange)="itemCountChanged($event)">
-            <option *ngFor="let size of maxSizes" [value]="size">{{size}}</option>
-          </select>
-        </div> -->
       </div>
       <!-- /Pagination row -->
     </div>
