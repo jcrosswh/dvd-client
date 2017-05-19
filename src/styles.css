@@ -8,3 +8,13 @@
 .underline {
   border-bottom: 1px solid #ccc;
 }
+
+/* From http://stackoverflow.com/a/23741988 */
+.row-no-padding > [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.text-align-h3 {
+  margin-top: 30px;
+}

@@ -10,6 +10,7 @@ import { InventoryService } from './inventory.service';
 import { AppComponent } from './app.component';
 import { DvdHeaderComponent }  from './dvd-header.component';
 import { DvdShoppingSummaryComponent }  from './dvd-shopping-summary.component';
+import { CategoryPipe } from './category.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DvdShoppingSummaryComponent }  from './dvd-shopping-summary.component';
   ],
   providers: [
     DvdClientService,
-    InventoryService
+    InventoryService,
+    CategoryPipe
   ],
   bootstrap: [AppComponent]
 })

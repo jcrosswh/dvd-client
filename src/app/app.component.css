@@ -1,4 +1,6 @@
 .container, .container-fluid {
   margin-top: 51px;
   padding-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
