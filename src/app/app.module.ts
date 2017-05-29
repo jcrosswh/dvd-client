@@ -5,10 +5,13 @@ import { HttpModule } from '@angular/http';
 import { PaginationModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { DvdClientService } from './dvd-client.service';
 import { InventoryService } from './inventory.service';
 
 import { AppComponent } from './app.component';
+import { AboutComponent } from './about.component';
 import { DvdHeaderComponent }  from './dvd-header.component';
 import { DvdShoppingSummaryComponent }  from './dvd-shopping-summary.component';
 import { CategoryPipe } from './category.pipe';
@@ -16,6 +19,7 @@ import { CategoryPipe } from './category.pipe';
 @NgModule({
   declarations: [
     AppComponent,
+    AboutComponent,
     DvdHeaderComponent,
     DvdShoppingSummaryComponent
   ],
@@ -24,7 +28,8 @@ import { CategoryPipe } from './category.pipe';
     FormsModule,
     HttpModule,
     PaginationModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [
     DvdClientService,
