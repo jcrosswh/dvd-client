@@ -11,7 +11,7 @@ import { DvdClientService } from './services/dvd-client.service';
 import { InventoryService } from './services/inventory.service';
 
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about.component';
+import { AboutComponent } from './components/about/about.component';
 import { DvdHeaderComponent }  from './dvd-header.component';
 import { DvdShoppingSummaryComponent }  from './dvd-shopping-summary.component';
 import { CategoryPipe } from './pipes/category.pipe';
