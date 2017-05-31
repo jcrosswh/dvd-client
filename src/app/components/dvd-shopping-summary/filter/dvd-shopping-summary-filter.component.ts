@@ -30,23 +30,15 @@ export class DvdShoppingSummaryFilterComponent implements OnInit {
 
   public applyCategoryFilter(category: any) {
     if (category.isChecked) {
-      // if (this.selectedCategories.indexOf(category.name) === -1) {
-      //   this.selectedCategories.push(category.name);
-      // }
       this.categoryService.addSelectedCategory(category.name);
     } else {
-      var index = this.selectedCategories.indexOf(category.name);
-      if (index !== -1) {
-          this.selectedCategories.splice(index, 1);
-      }
+      this.categoryService.removeSelectedCategory(category.name);
     }
-    // this.generateDisplayList();
   }
 
   public resetFilter(element: any) {
     element.blur();
     this.categories.forEach(category => category.isChecked = false);
-    this.selectedCategories = [];
-    // this.generateDisplayList();
+    this.categoryService.clearCategories();
   }
 }

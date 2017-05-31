@@ -4,7 +4,11 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class StoreService {
-    private store = new Subject<number>();
+    private store: Subject<number>;
+
+    constructor() {
+      this.store = new Subject<number>();
+    }
 
     public getStore(): Observable<number> {
       return this.store.asObservable();

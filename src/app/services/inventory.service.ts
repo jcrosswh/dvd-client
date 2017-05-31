@@ -1,33 +1,55 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subscription } from 'rxjs/Subscription';
 
 import { StoreService } from './store.service';
+import { CategoryService } from './category.service';
 import { DvdClientService } from './dvd-client.service';
 
 import { Inventory } from '../domain/inventory';
 
 @Injectable()
 export class InventoryService {
-    private availableInventory = new ReplaySubject<Array<Inventory>>(1);
+    private availableInventory: Subject<Array<Inventory>>;
+    private baseInventory: Array<Inventory>;
     private storeSubscription: Subscription;
+    private categorySubscription: Subscription;
+    private selectedCategories: Set<string>;
 
     constructor(
       private storeService: StoreService,
+      private categoryService: CategoryService,
       private dvdClientService: DvdClientService
     ) {
+      this.availableInventory = new Subject<Array<Inventory>>();
+      this.selectedCategories = new Set();
       this.storeSubscription = this.storeService.getStore()
          .subscribe((storeId) => {
            dvdClientService.getAvailableInventory(storeId)
-           .subscribe((result) => this.setInventory(result));
+           .subscribe((result) => {
+             this.baseInventory = result;
+             this.setInventory(this.baseInventory);
+           });
+         });
+
+      this.categorySubscription = this.categoryService.getSelectedCategories()
+         .subscribe((categories: Set<string>) => {
+           this.selectedCategories = categories;
+           this.setInventory(this.baseInventory);
          });
     }
 
     public getInventory(): Observable<Array<Inventory>> {
+
+      function filterOnCategories(inventory: Inventory): boolean {
+        return this.size === 0 || this.has(inventory.category);
+      }
+
       return this.availableInventory.asObservable()
-      .map((result) => result.filter((inventory: Inventory) => inventory.category === 'Horror'));
+      .map((result: Array<Inventory>) => result.filter(
+        filterOnCategories,
+        this.selectedCategories));
     }
 
     public setInventory(inventory: Array<Inventory>) {

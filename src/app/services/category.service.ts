@@ -1,24 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class CategoryService {
-    private selectedCategories = new BehaviorSubject<Array<string>>(null);
+    private selectedCategories: Subject<Set<string>>;
+    private workingSet: Set<string>;
 
-    public getSelectedCategories(): Observable<Array<string>> {
+    constructor() {
+      this.selectedCategories = new Subject<Set<string>>();
+      this.workingSet = new Set();
+      this.setSelectedCategories(this.workingSet);
+    }
+
+    public getSelectedCategories(): Observable<Set<string>> {
       return this.selectedCategories.asObservable();
     }
 
     public addSelectedCategory(category: string) {
-      this.selectedCategories.next(['first', 'second']);
-      // if (this.selectedCategories.indexOf(category.name) === -1) {
-      //   this.selectedCategories.push(category.name);
-      // }
+      this.workingSet.add(category);
+      this.setSelectedCategories(this.workingSet);
     }
 
-    public setSelectedCategories(categories: Array<string>) {
+    public removeSelectedCategory(category: string) {
+      this.workingSet.delete(category);
+      this.setSelectedCategories(this.workingSet);
+    }
+
+    public clearCategories() {
+      this.workingSet.clear();
+      this.setSelectedCategories(this.workingSet);
+    }
+
+    public setSelectedCategories(categories: Set<string>) {
       this.selectedCategories.next(categories);
     }
 }
