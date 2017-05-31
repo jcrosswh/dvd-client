@@ -3,8 +3,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { CategoryPipe } from './pipes/category.pipe';
-import { DvdClientService } from './dvd-client.service';
-import { InventoryService } from './inventory.service';
+import { DvdClientService } from './services/dvd-client.service';
+import { InventoryService } from './services/inventory.service';
 import { Inventory } from './domain/inventory';
 import { Film } from './domain/film';
 

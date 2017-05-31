@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { Inventory } from './domain/inventory';
+import { Inventory } from '../domain/inventory';
 
 @Injectable()
 export class InventoryService {

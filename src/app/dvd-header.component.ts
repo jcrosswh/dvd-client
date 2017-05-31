@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Store } from './domain/store';
-import { DvdClientService } from './dvd-client.service';
-import { InventoryService } from './inventory.service';
+import { DvdClientService } from './services/dvd-client.service';
+import { InventoryService } from './services/inventory.service';
 
 @Component({
   selector: 'dvd-header',

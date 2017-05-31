@@ -7,8 +7,8 @@ import { ModalModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { DvdClientService } from './dvd-client.service';
-import { InventoryService } from './inventory.service';
+import { DvdClientService } from './services/dvd-client.service';
+import { InventoryService } from './services/inventory.service';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about.component';
