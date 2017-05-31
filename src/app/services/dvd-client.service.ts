@@ -65,11 +65,6 @@ export class DvdClientService {
       .catch(this.handleError);
   }
 
-  private createAuthorizationHeader(headers: Headers) {
-    headers.append('Authorization', 'Basic ' +
-      btoa('MARY.SMITH@sakilacustomer.org:password'));
-  }
-
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
