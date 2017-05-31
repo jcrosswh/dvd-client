@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Store } from './store';
+import { Store } from './domain/store';
 import { DvdClientService } from './dvd-client.service';
 import { InventoryService } from './inventory.service';
 

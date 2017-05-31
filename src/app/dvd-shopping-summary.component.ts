@@ -5,8 +5,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { CategoryPipe } from './category.pipe';
 import { DvdClientService } from './dvd-client.service';
 import { InventoryService } from './inventory.service';
-import { Inventory } from './inventory';
-import { Film } from './film';
+import { Inventory } from './domain/inventory';
+import { Film } from './domain/film';
 
 @Component({
   selector: 'dvd-shopping-summary',

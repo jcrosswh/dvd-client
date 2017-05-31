@@ -3,9 +3,9 @@ import { Headers, Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Inventory } from './inventory';
-import { Store } from './store';
-import { Film } from './film';
+import { Inventory } from './domain/inventory';
+import { Store } from './domain/store';
+import { Film } from './domain/film';
 
 @Injectable()
 export class DvdClientService {
