@@ -25,9 +25,7 @@ export class DvdShoppingSummaryComponent implements OnInit {
   private numPages:number = 0;
   private maxSizes:Array<number>;
   private displayInventory:Inventory[][];
-  private categories:any[];
   private itemsPerRow:number = 4;
-  private selectedCategories:string[];
   private isModalShown:boolean;
   @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
   private selectedFilm:Film;
@@ -44,8 +42,6 @@ export class DvdShoppingSummaryComponent implements OnInit {
     this.maxSizes = [4, 8, 12, 24, 48, 96];
     this.itemsPerPage = this.maxSizes[3];
     this.displayInventory = [];
-    this.categories = [];
-    this.selectedCategories = [];
     this.isModalShown = false;
   }
 
@@ -59,12 +55,6 @@ export class DvdShoppingSummaryComponent implements OnInit {
            this.generateDisplayList();
          }
        });
-     this.dvdClientService.getCategories()
-         .then(categories => {
-           categories.forEach(
-             category => this.categories.push({name: category, isChecked: false})
-           );
-         });
   }
 
   public updatePage(event: any) {
@@ -72,28 +62,7 @@ export class DvdShoppingSummaryComponent implements OnInit {
     this.generateDisplayList();
   }
 
-  public applyCategoryFilter(category: any) {
-    if (category.isChecked) {
-      if (this.selectedCategories.indexOf(category.name) === -1) {
-        this.selectedCategories.push(category.name);
-      }
-    } else {
-      var index = this.selectedCategories.indexOf(category.name);
-      if (index !== -1) {
-          this.selectedCategories.splice(index, 1);
-      }
-    }
-    this.generateDisplayList();
-  }
-
   public itemCountChanged(event: any) {
-    this.generateDisplayList();
-  }
-
-  public resetFilter(element: any) {
-    element.blur();
-    this.categories.forEach(category => category.isChecked = false);
-    this.selectedCategories = [];
     this.generateDisplayList();
   }
 
@@ -123,7 +92,7 @@ export class DvdShoppingSummaryComponent implements OnInit {
   }
 
   private filterList() {
-    this.filteredInventory = this.categoryPipe.transform(this.availableInventory, this.selectedCategories);
+    this.filteredInventory = this.categoryPipe.transform(this.availableInventory);
     this.pgTotalItems = this.filteredInventory.length;
   }
 }

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store } from '../../domain/store';
 import { DvdClientService } from '../../services/dvd-client.service';
+import { StoreService } from '../../services/store.service';
 import { InventoryService } from '../../services/inventory.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class DvdHeaderComponent implements OnInit {
 
   constructor(
     private dvdClientService: DvdClientService,
+    private storeService: StoreService,
     private inventoryService: InventoryService
   ) {}
 
@@ -23,8 +25,7 @@ export class DvdHeaderComponent implements OnInit {
     this.dvdClientService.getStores()
       .then(stores => {
         this.stores = stores;
-        this.selectedStore = this.stores[0].storeId;
-        this.updateInventory();
+        this.storeSelected(this.stores[0].storeId);
       });
   }
 
@@ -34,9 +35,6 @@ export class DvdHeaderComponent implements OnInit {
   }
 
   private updateInventory() {
-    this.dvdClientService.getAvailableInventory(this.selectedStore)
-      .then(inventory => {
-        this.inventoryService.setInventory(inventory);
-      });
+    this.storeService.setStore(this.selectedStore);
   }
 }

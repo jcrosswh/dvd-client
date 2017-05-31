@@ -7,13 +7,16 @@ import { ModalModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { DvdClientService } from './services/dvd-client.service';
 import { InventoryService } from './services/inventory.service';
+import { StoreService } from './services/store.service';
+import { CategoryService } from './services/category.service';
+import { DvdClientService } from './services/dvd-client.service';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
 import { DvdHeaderComponent }  from './components/dvd-header/dvd-header.component';
 import { DvdShoppingSummaryComponent }  from './components/dvd-shopping-summary/dvd-shopping-summary.component';
+import { DvdShoppingSummaryFilterComponent }  from './components/dvd-shopping-summary/filter/dvd-shopping-summary-filter.component';
 import { CategoryPipe } from './pipes/category.pipe';
 
 @NgModule({
@@ -21,7 +24,8 @@ import { CategoryPipe } from './pipes/category.pipe';
     AppComponent,
     AboutComponent,
     DvdHeaderComponent,
-    DvdShoppingSummaryComponent
+    DvdShoppingSummaryComponent,
+    DvdShoppingSummaryFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +36,10 @@ import { CategoryPipe } from './pipes/category.pipe';
     AppRoutingModule
   ],
   providers: [
-    DvdClientService,
     InventoryService,
+    StoreService,
+    CategoryService,
+    DvdClientService,
     CategoryPipe
   ],
   bootstrap: [AppComponent]

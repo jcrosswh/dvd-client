@@ -7,7 +7,8 @@ import { Inventory } from '../domain/inventory'
 })
 export class CategoryPipe implements PipeTransform {
 
-    transform(items: Inventory[], filterArray: string[]): Inventory[] {
+    transform(items: Inventory[]): Inventory[] {
+        var filterArray = [];
         return items.filter(
           item => filterArray.length === 0 || filterArray.includes(item.category)
         );

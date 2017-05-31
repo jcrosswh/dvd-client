@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/toPromise';
 
 import { Inventory } from '../domain/inventory';
@@ -11,7 +12,9 @@ import { Film } from '../domain/film';
 export class DvdClientService {
   private serviceUrl = 'http://localhost:8080';
 
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http
+  ) { }
 
   getStores(): Promise<Array<Store>> {
 
@@ -39,17 +42,13 @@ export class DvdClientService {
       .catch(this.handleError);
   }
 
-  getAvailableInventory(storeId: number): Promise<Array<Inventory>> {
+  getAvailableInventory(storeId: number): Observable<Array<Inventory>> {
 
     return this.http
       .get(
         this.serviceUrl + '/api/stores/' + storeId + '/inventory'
       )
-      .toPromise()
-      .then((response) => {
-        return response.json() as Inventory[];
-      })
-      .catch(this.handleError);
+      .map((response) => response.json());
   }
 
   getFilmDetail(title: string): Promise<Film> {
