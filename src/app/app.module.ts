@@ -13,7 +13,7 @@ import { InventoryService } from './services/inventory.service';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
 import { DvdHeaderComponent }  from './components/dvd-header/dvd-header.component';
-import { DvdShoppingSummaryComponent }  from './dvd-shopping-summary.component';
+import { DvdShoppingSummaryComponent }  from './components/dvd-shopping-summary/dvd-shopping-summary.component';
 import { CategoryPipe } from './pipes/category.pipe';
 
 @NgModule({

@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { CategoryPipe } from './pipes/category.pipe';
-import { DvdClientService } from './services/dvd-client.service';
-import { InventoryService } from './services/inventory.service';
-import { Inventory } from './domain/inventory';
-import { Film } from './domain/film';
+import { CategoryPipe } from '../../pipes/category.pipe';
+import { DvdClientService } from '../../services/dvd-client.service';
+import { InventoryService } from '../../services/inventory.service';
+import { Inventory } from '../../domain/inventory';
+import { Film } from '../../domain/film';
 
 @Component({
   selector: 'dvd-shopping-summary',
