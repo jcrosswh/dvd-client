@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about.component';
 import { DvdHeaderComponent }  from './dvd-header.component';
 import { DvdShoppingSummaryComponent }  from './dvd-shopping-summary.component';
-import { CategoryPipe } from './category.pipe';
+import { CategoryPipe } from './pipes/category.pipe';
 
 @NgModule({
   declarations: [

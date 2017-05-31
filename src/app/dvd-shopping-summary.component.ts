@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { CategoryPipe } from './category.pipe';
+import { CategoryPipe } from './pipes/category.pipe';
 import { DvdClientService } from './dvd-client.service';
 import { InventoryService } from './inventory.service';
 import { Inventory } from './domain/inventory';
