@@ -27,7 +27,7 @@
     <select
       class="form-control"
       name="summaryPageSize"
-      [(ngModel)]="itemsPerPage"
+      [(ngModel)]="pagination.itemsPerPage"
       (ngModelChange)="itemCountChanged($event)">
       <option *ngFor="let size of maxSizes" [value]="size">{{size}}</option>
     </select>

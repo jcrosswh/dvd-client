@@ -5,8 +5,11 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { CategoryPipe } from '../../pipes/category.pipe';
 import { DvdClientService } from '../../services/dvd-client.service';
 import { InventoryService } from '../../services/inventory.service';
+import { PaginationService } from '../../services/pagination.service';
+
 import { Inventory } from '../../domain/inventory';
 import { Film } from '../../domain/film';
+import { Pagination } from '../../domain/Pagination';
 
 @Component({
   selector: 'dvd-shopping-summary',
@@ -15,50 +18,47 @@ import { Film } from '../../domain/film';
 })
 export class DvdShoppingSummaryComponent implements OnInit {
   private subscription:Subscription;
+  private paginationSubscription:Subscription;
   private availableInventory:Inventory[];
-  private filteredInventory:Inventory[];
-  private maxSize:number = 5;
-  private itemsPerPage:number;
-  private pgTotalItems:number;
-  private pgCurrentPage:number;
-  private pgTotalPages:number;
-  private numPages:number = 0;
-  private maxSizes:Array<number>;
   private displayInventory:Inventory[][];
   private itemsPerRow:number = 4;
   private isModalShown:boolean;
   @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
   private selectedFilm:Film;
+  private pagination:Pagination;
 
   constructor(
     private dvdClientService: DvdClientService,
     private inventoryService: InventoryService,
+    private paginationService: PaginationService,
     private categoryPipe: CategoryPipe
   ) {
     this.availableInventory = [];
-    this.filteredInventory = [];
-    this.pgCurrentPage = 1;
-    this.pgTotalItems = 0;
-    this.maxSizes = [4, 8, 12, 24, 48, 96];
-    this.itemsPerPage = this.maxSizes[3];
     this.displayInventory = [];
     this.isModalShown = false;
   }
 
   public ngOnInit() {
+    this.paginationSubscription = this.paginationService.getPagination()
+       .subscribe((pagination) => {
+         this.pagination = pagination;
+         this.generateDisplayList();
+       });
     this.subscription = this.inventoryService.getInventory()
        .subscribe((items) => {
-         this.pgCurrentPage = 1;
+         this.paginationService.setCurrentPage(1);
          this.availableInventory = items;
          if (this.availableInventory) {
-           this.pgTotalItems = this.availableInventory.length;
+           this.paginationService.setTotalItems(this.availableInventory.length);
            this.generateDisplayList();
          }
        });
+    this.paginationService.setCurrentPage(1);
+    this.paginationService.setMaxSize(5);
   }
 
   public updatePage(event: any) {
-    this.pgCurrentPage = event.page;
+    this.paginationService.setCurrentPage(event.page);
     this.generateDisplayList();
   }
 
@@ -80,19 +80,17 @@ export class DvdShoppingSummaryComponent implements OnInit {
     this.isModalShown = false;
   }
 
-  private generateDisplayList() {
-    this.displayInventory = [];
-    this.filterList();
-    for (var i = 0; i < this.itemsPerPage / this.itemsPerRow; i++) {
-      this.displayInventory[i] = this.filteredInventory.slice(
-        (this.pgCurrentPage * this.itemsPerRow * (i + 1)) - this.itemsPerRow,
-        this.pgCurrentPage * this.itemsPerRow * (i + 1)
-      );
-    }
+  public setNumPages(event: any) {
+    console.log(event);
   }
 
-  private filterList() {
-    this.filteredInventory = this.categoryPipe.transform(this.availableInventory);
-    this.pgTotalItems = this.filteredInventory.length;
+  private generateDisplayList() {
+    this.displayInventory = [];
+    for (var i = 0; i < this.pagination.itemsPerPage / this.itemsPerRow; i++) {
+      this.displayInventory[i] = this.availableInventory.slice(
+        (this.pagination.currentPage * this.itemsPerRow * (i + 1)) - this.itemsPerRow,
+        this.pagination.currentPage * this.itemsPerRow * (i + 1)
+      );
+    }
   }
 }

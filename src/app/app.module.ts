@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { InventoryService } from './services/inventory.service';
 import { StoreService } from './services/store.service';
 import { CategoryService } from './services/category.service';
+import { PaginationService } from './services/pagination.service';
 import { DvdClientService } from './services/dvd-client.service';
 
 import { AppComponent } from './app.component';
@@ -39,6 +40,7 @@ import { CategoryPipe } from './pipes/category.pipe';
     InventoryService,
     StoreService,
     CategoryService,
+    PaginationService,
     DvdClientService,
     CategoryPipe
   ],

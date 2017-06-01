@@ -32,7 +32,7 @@ export class CategoryService {
       this.setSelectedCategories(this.workingSet);
     }
 
-    public setSelectedCategories(categories: Set<string>) {
+    private setSelectedCategories(categories: Set<string>) {
       this.selectedCategories.next(categories);
     }
 }
