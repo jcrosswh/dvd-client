@@ -62,10 +62,6 @@ export class DvdShoppingSummaryComponent implements OnInit {
     this.generateDisplayList();
   }
 
-  public itemCountChanged(event: any) {
-    this.generateDisplayList();
-  }
-
   public showModal(title:string):void {
     this.dvdClientService.getFilmDetail(title)
         .then(film => this.selectedFilm = film);
@@ -78,10 +74,6 @@ export class DvdShoppingSummaryComponent implements OnInit {
 
   public onHidden():void {
     this.isModalShown = false;
-  }
-
-  public setNumPages(event: any) {
-    console.log(event);
   }
 
   private generateDisplayList() {
