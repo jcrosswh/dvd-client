@@ -59,7 +59,6 @@ export class DvdShoppingSummaryComponent implements OnInit {
 
   public updatePage(event: any) {
     this.paginationService.setCurrentPage(event.page);
-    this.generateDisplayList();
   }
 
   public showModal(title:string):void {
@@ -80,8 +79,8 @@ export class DvdShoppingSummaryComponent implements OnInit {
     this.displayInventory = [];
     for (var i = 0; i < this.pagination.itemsPerPage / this.itemsPerRow; i++) {
       this.displayInventory[i] = this.availableInventory.slice(
-        (this.pagination.currentPage * this.itemsPerRow * (i + 1)) - this.itemsPerRow,
-        this.pagination.currentPage * this.itemsPerRow * (i + 1)
+        (this.pagination.currentPage - 1) * this.pagination.itemsPerPage + i * this.itemsPerRow,
+        (this.pagination.currentPage - 1) * this.pagination.itemsPerPage + i * this.itemsPerRow + this.itemsPerRow
       );
     }
   }
