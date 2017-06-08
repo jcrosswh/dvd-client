@@ -47,7 +47,6 @@ export class InventoryService {
         return this.size === 0 || this.has(inventory.category);
       }
 
-      console.log(this.availableInventory.asObservable());
       return this.availableInventory.asObservable()
       .map((result: Array<Inventory>) => result.filter(
         filterOnCategories,
