@@ -20,12 +20,12 @@ export class DvdShoppingSummaryComponent implements OnInit {
   private subscription:Subscription;
   private paginationSubscription:Subscription;
   private availableInventory:Inventory[];
-  private displayInventory:Inventory[][];
+  public displayInventory:Inventory[][];
   private itemsPerRow:number = 4;
-  private isModalShown:boolean;
+  public isModalShown:boolean;
   @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
-  private selectedFilm:Film;
-  private pagination:Pagination;
+  public selectedFilm:Film;
+  public pagination:Pagination;
 
   constructor(
     private dvdClientService: DvdClientService,

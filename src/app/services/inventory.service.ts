@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
 
 import { StoreService } from './store.service';
 import { CategoryService } from './category.service';
@@ -46,6 +47,7 @@ export class InventoryService {
         return this.size === 0 || this.has(inventory.category);
       }
 
+      console.log(this.availableInventory.asObservable());
       return this.availableInventory.asObservable()
       .map((result: Array<Inventory>) => result.filter(
         filterOnCategories,

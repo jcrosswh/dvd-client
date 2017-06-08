@@ -26,7 +26,8 @@ import { CategoryPipe } from './pipes/category.pipe';
     AboutComponent,
     DvdHeaderComponent,
     DvdShoppingSummaryComponent,
-    DvdShoppingSummaryFilterComponent
+    DvdShoppingSummaryFilterComponent,
+    CategoryPipe // duplicating on this line to get prod build to work
   ],
   imports: [
     BrowserModule,

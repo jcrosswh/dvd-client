@@ -13,10 +13,10 @@ import { Pagination } from '../../../domain/Pagination';
 })
 export class DvdShoppingSummaryFilterComponent implements OnInit {
   private paginationSubscription:Subscription;
-  private categories:Array<any>;
+  public categories:Array<any>;
   private selectedCategories:Array<string>;
-  private maxSizes:Array<number>;
-  private pagination:Pagination;
+  public maxSizes:Array<number>;
+  public pagination:Pagination;
 
   constructor(
     private dvdClientService: DvdClientService,
