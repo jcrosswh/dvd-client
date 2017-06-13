@@ -14,7 +14,13 @@
             <div class="panel panel-default">
               <div class="panel-heading ellipsis">{{inventory.filmTitle}}</div>
               <div class="panel-body">
-                {{inventory.category}}
+                <div class="row">
+                  <div class="col-xs-6">{{inventory.category}}</div>
+                  <div class="col-xs-6">Rating: {{inventory.rating}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-3">${{inventory.rentalRate}}</div>
+                </div>
               </div>
             </div>
           </a>
