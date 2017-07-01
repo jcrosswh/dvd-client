@@ -39,7 +39,7 @@ export class DvdShoppingSummaryFilterComponent implements OnInit {
              category => this.categories.push({name: category, isChecked: false})
            );
          });
-    this.paginationService.setItemsPerPage(this.maxSizes[3]);
+    this.paginationService.setItemsPerPage(this.maxSizes[2]);
   }
 
   public applyCategoryFilter(category: any) {
