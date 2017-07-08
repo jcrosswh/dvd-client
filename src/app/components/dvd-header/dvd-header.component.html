@@ -15,10 +15,19 @@
         <li routerLinkActive="active"><a routerLink="about">About</a></li>
       </ul>
       <div class="navbar-right navbar-form form-group">
+        <button type="button" class="btn btn-link login-button" (click)="showShoppingCart()">
+          Login
+        </button>
         <label class="navbar-text" for="storeSelector">Store:</label>
         <select class="form-control" name="storeSelector" [(ngModel)]="selectedStore" (ngModelChange)="storeSelected($event)">
           <option *ngFor="let store of stores" [value]="store.storeId">{{store.city}} / {{store.district}}</option>
         </select>
+        <button type="button" class="btn btn-link shopping-cart-button" (click)="showShoppingCart()">
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge">{{shoppingCartSize}}</span>
+        </button>
+        <button type="button" class="btn btn-link shopping-cart-button" (click)="clearCart()">
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </div>

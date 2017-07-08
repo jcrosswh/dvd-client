@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { CategoryPipe } from '../../pipes/category.pipe';
 import { DvdClientService } from '../../services/dvd-client.service';
@@ -22,8 +21,8 @@ export class DvdShoppingSummaryComponent implements OnInit {
   private availableInventory:Inventory[];
   public displayInventory:Inventory[][];
   private itemsPerRow:number = 4;
-  public isModalShown:boolean;
-  @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
+  public isShoppingCartModalShown:boolean;
+  // @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
   public selectedFilm:Film;
   public pagination:Pagination;
 
@@ -35,7 +34,7 @@ export class DvdShoppingSummaryComponent implements OnInit {
   ) {
     this.availableInventory = [];
     this.displayInventory = [];
-    this.isModalShown = false;
+    this.isShoppingCartModalShown = false;
   }
 
   public ngOnInit() {
@@ -64,15 +63,6 @@ export class DvdShoppingSummaryComponent implements OnInit {
   public showModal(title:string):void {
     this.dvdClientService.getFilmDetail(title)
         .then(film => this.selectedFilm = film);
-    this.isModalShown = true;
-  }
-
-  public hideModal():void {
-    this.autoShownModal.hide();
-  }
-
-  public onHidden():void {
-    this.isModalShown = false;
   }
 
   private generateDisplayList() {

@@ -1,1 +1,21 @@
-.navbar-form label { margin-bottom: 6px; margin-top: 7px; }
+.navbar-form label {
+  margin-bottom: 6px;
+  margin-top: 7px;
+}
+
+.login-button {
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.login-button:hover, .login-button:focus {
+  text-decoration: none;
+}
+
+.navbar-right > .navbar-text {
+  float: none;
+}
+
+.shopping-cart-button {
+  padding-left: 10px;
+}

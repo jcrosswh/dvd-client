@@ -1,0 +1,40 @@
+<div
+  *ngIf="isModalShown && selectedFilm"
+  [config]="{ show: true }"
+  (onHidden)="onHidden()"
+  bsModal
+  #autoShownModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{selectedFilm.title}}</h4> <span class="description-price">${{selectedFilm.rentalRate}}</span>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{selectedFilm.description}}</p>
+        <div class="row">
+          <div class="col-sm-4">
+            <strong>Released:</strong> {{selectedFilm.releaseYear}}
+          </div>
+          <div class="col-sm-4">
+            <strong>Rental Length:</strong> {{selectedFilm.rentalDuration}} day<span *ngIf="selectedFilm.rentalDuration > 1">s</span>
+          </div>
+          <div class="col-sm-4">
+            <strong>Rating:</strong> {{selectedFilm.rating}}
+          </div>
+        </div>
+        <div class="row subrow">
+          <div class="col-sm-offset-10 col-sm-2">
+            <span class="pull-left"><button type="button" class="btn btn-primary" (click)="addToCart(selectedFilm)"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
