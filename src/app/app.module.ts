@@ -13,6 +13,7 @@ import { CategoryService } from './services/category.service';
 import { PaginationService } from './services/pagination.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { DvdClientService } from './services/dvd-client.service';
+import { LoginService } from './services/login.service';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
@@ -21,6 +22,7 @@ import { DvdShoppingSummaryComponent }  from './components/dvd-shopping-summary/
 import { DvdShoppingSummaryFilterComponent }  from './components/dvd-shopping-summary/filter/dvd-shopping-summary-filter.component';
 import { CategoryPipe } from './pipes/category.pipe';
 import { FilmDetailComponent } from './components/dvd-shopping-summary/modals/film-detail/film-detail.component';
+import { LoginComponent } from './components/dvd-shopping-summary/modals/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,9 @@ import { FilmDetailComponent } from './components/dvd-shopping-summary/modals/fi
     DvdHeaderComponent,
     DvdShoppingSummaryComponent,
     DvdShoppingSummaryFilterComponent,
-    CategoryPipe,
-    FilmDetailComponent // duplicating on this line to get prod build to work
+    CategoryPipe, // duplicating on this line to get prod build to work
+    FilmDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { FilmDetailComponent } from './components/dvd-shopping-summary/modals/fi
     PaginationService,
     ShoppingCartService,
     DvdClientService,
-    CategoryPipe
+    CategoryPipe,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

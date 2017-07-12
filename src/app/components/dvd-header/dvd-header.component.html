@@ -15,9 +15,10 @@
         <li routerLinkActive="active"><a routerLink="about">About</a></li>
       </ul>
       <div class="navbar-right navbar-form form-group">
-        <button type="button" class="btn btn-link login-button" (click)="showShoppingCart()">
+        <button *ngIf="!customer" type="button" class="btn btn-link login-button" (click)="showLoginModal()">
           Login
         </button>
+        <span *ngIf="customer" class="navbar-text">Welcome, {{customer.firstName}}</span>
         <label class="navbar-text" for="storeSelector">Store:</label>
         <select class="form-control" name="storeSelector" [(ngModel)]="selectedStore" (ngModelChange)="storeSelected($event)">
           <option *ngFor="let store of stores" [value]="store.storeId">{{store.city}} / {{store.district}}</option>
