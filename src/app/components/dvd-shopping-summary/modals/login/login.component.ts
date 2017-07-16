@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   public login() {
     this.dvdClientService.setEmailAndPassword(this.email, this.password)
     .then((response) => {
-      console.log(response.json());
       this.hideModal();
       this.loginService.setAuthentication(response.json());
     })
