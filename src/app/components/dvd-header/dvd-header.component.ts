@@ -67,11 +67,7 @@ export class DvdHeaderComponent implements OnInit {
     this.loginService.showLoginModal();
   }
 
-  public clearCart() {
-    this.shoppingCartService.clearShoppingCart();
-  }
-
   public showShoppingCart() {
-
+    this.shoppingCartService.showShoppingCartModal();
   }
 }

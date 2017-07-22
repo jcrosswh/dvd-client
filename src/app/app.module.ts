@@ -23,6 +23,7 @@ import { DvdShoppingSummaryFilterComponent }  from './components/dvd-shopping-su
 import { CategoryPipe } from './pipes/category.pipe';
 import { FilmDetailComponent } from './components/dvd-shopping-summary/modals/film-detail/film-detail.component';
 import { LoginComponent } from './components/dvd-shopping-summary/modals/login/login.component';
+import { ShoppingCartComponent } from './components/dvd-shopping-summary/modals/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LoginComponent } from './components/dvd-shopping-summary/modals/login/l
     DvdShoppingSummaryFilterComponent,
     CategoryPipe, // duplicating on this line to get prod build to work
     FilmDetailComponent,
-    LoginComponent
+    LoginComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

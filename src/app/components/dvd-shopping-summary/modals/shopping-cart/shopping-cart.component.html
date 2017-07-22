@@ -1,0 +1,38 @@
+<div
+  *ngIf="isModalShown"
+  [config]="{ show: true }"
+  (onHidden)="onHidden()"
+  bsModal
+  #autoShownModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Checkout</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngFor="let film of films">
+          <div class="col-sm-8">{{film.title}}</div>
+          <div class="col-sm-4">{{film.rentalRate | currency:'USD':true:'1.2-2'}}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-offset-8 col-sm-4">{{total | currency:'USD':true:'1.2-2'}}</div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-offset-8 col-sm-2">
+            <button type="button" class="btn btn-primary" (click)="clearCart()">Clear Cart</button>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-primary" (click)="checkout()">Check Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

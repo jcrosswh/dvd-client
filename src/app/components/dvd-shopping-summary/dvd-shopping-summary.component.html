@@ -19,7 +19,7 @@
                   <div class="col-xs-6">Rating: {{inventory.rating}}</div>
                 </div>
                 <div class="row subrow">
-                  <div class="col-xs-3">${{inventory.rentalRate}}</div>
+                  <div class="col-xs-3">{{inventory.rentalRate | currency:'USD':true:'1.2-2'}}</div>
                 </div>
               </div>
             </div>
@@ -50,3 +50,5 @@
 <film-detail-modal [selectedFilm]="selectedFilm"></film-detail-modal>
 
 <login-modal></login-modal>
+
+<shopping-cart></shopping-cart>

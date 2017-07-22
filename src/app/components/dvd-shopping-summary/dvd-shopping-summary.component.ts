@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { CurrencyPipe } from '@angular/common';
 
 import { CategoryPipe } from '../../pipes/category.pipe';
 import { DvdClientService } from '../../services/dvd-client.service';
